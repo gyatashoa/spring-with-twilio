@@ -4,3 +4,4 @@ config:
   twilio:
     account_sid: ACf958400b6a6ee834006e983df48b739f
     auth_token: 72ad8c1d0a3d19e16dd940880e72878e
+    phone_number: +19035013034

@@ -14,6 +14,9 @@ public class TwilioConfig {
     @Value("${config.twilio.auth_token}")
     public String TWILIO_AUTH_TOKEN;
 
+    @Value("${config.twilio.phone_number}")
+    public String TWILIO_PHONE_NUMBER;
+
     @Bean
     void initTwilio(){
         Twilio.init(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);

@@ -3,13 +3,19 @@ package me.felixcodes.twiliowithspringboot.dto;
 
 public class SMSRequest {
 
-    final private String phone;
+    private String phoneNumber;
 
     public SMSRequest(String phoneNumber) {
-        this.phone = phoneNumber;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public SMSRequest(){}
+
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPhoneNumber(){
-        return this.phone;
+        return this.phoneNumber;
     }
 }

@@ -1,7 +1,0 @@
-
-
-config:
-  twilio:
-    account_sid:
-    auth_token:
-    phone_number:

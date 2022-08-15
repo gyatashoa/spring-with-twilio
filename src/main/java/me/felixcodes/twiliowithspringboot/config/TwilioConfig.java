@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TwilioConfig {
 
-    @Value("${config.twilio.account_sid}")
+    @Value("${account_sid}")
     public String TWILIO_ACCOUNT_SID;
-    @Value("${config.twilio.auth_token}")
+    @Value("${auth_token}")
     public String TWILIO_AUTH_TOKEN;
 
-    @Value("${config.twilio.phone_number}")
+    @Value("${phone_number}")
     public String TWILIO_PHONE_NUMBER;
 
     @Bean

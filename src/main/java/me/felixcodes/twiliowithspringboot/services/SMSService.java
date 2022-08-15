@@ -32,7 +32,7 @@ public class SMSService {
                 new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
                 "You have a new order request on, please open the app to check"
         ).create();
-        var status = message.getStatus();
+        Message.Status status = message.getStatus();
         log.info(status.name());
     }
 
@@ -45,7 +45,7 @@ public class SMSService {
         ).setMediaUrl(
                 URI.create("https://freeiconshop.com/wp-content/uploads/edd/image-solid.png")
         ).create();
-        var status = message.getStatus();
+        Message.Status status = message.getStatus();
         log.info(status.name());
     }
 

@@ -28,7 +28,7 @@ public class SMSService {
 
     public void sendSms(SMSRequest smsRequest){
         Message message = Message.creator(
-                new com.twilio.type.PhoneNumber(smsRequest.phoneNumber()),
+                new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
                 new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
                 "You have a new order request on, please open the app to check"
         ).create();
@@ -39,7 +39,7 @@ public class SMSService {
     public void sendMMS(SMSRequest smsRequest, String host) throws IOException {
         Resource resource = new ClassPathResource("pic.png");
         Message message = Message.creator(
-                new com.twilio.type.PhoneNumber(smsRequest.phoneNumber()),
+                new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
                 new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
                 "You have a new order request on, please open the app to check"
         ).setMediaUrl(

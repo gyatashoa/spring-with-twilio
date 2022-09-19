@@ -26,31 +26,62 @@ public class SMSService {
         this.twilioConfig = twilioConfig;
     }
 
-    public void sendSms(SMSRequest smsRequest){
+    public void sendRequestSms(SMSRequest smsRequest){
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
                 new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
-                "You have a new order request on, please open the app to check"
+                String.format("Dear %s,You have a new order request, please open the app to check",smsRequest.getName())
         ).create();
         Message.Status status = message.getStatus();
         log.info(status.name());
     }
 
-    public void sendMMS(SMSRequest smsRequest, String host) throws IOException {
-        Resource resource = new ClassPathResource("pic.png");
+
+    public void sendRideEnded(SMSRequest smsRequest){
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
                 new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
-                "You have a new order request on, please open the app to check"
-        ).setMediaUrl(
-                URI.create("https://freeiconshop.com/wp-content/uploads/edd/image-solid.png")
+                String.format("Dear %s,Your ride has ended,Thank you for using our app.",smsRequest.getName())
         ).create();
         Message.Status status = message.getStatus();
         log.info(status.name());
     }
 
-    public byte[] getImage() throws IOException {
-        Resource resource = new ClassPathResource("pic.png");
-        return IOUtils.toByteArray(resource.getInputStream());
+    public void sendDeclineSms(SMSRequest smsRequest){
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
+                new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
+                String.format("Dear %s,Your order request has been cancelled",smsRequest.getName())
+        ).create();
+        Message.Status status = message.getStatus();
+        log.info(status.name());
     }
+
+    public void sendResponseSms(SMSRequest smsRequest) {
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
+                new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
+                String.format("Dear %s,Your order request has been accepted",smsRequest.getName())
+        ).create();
+        Message.Status status = message.getStatus();
+        log.info(status.name());
+    }
+
+//    public void sendMMS(SMSRequest smsRequest, String host) throws IOException {
+//        Resource resource = new ClassPathResource("pic.png");
+//        Message message = Message.creator(
+//                new com.twilio.type.PhoneNumber(smsRequest.getPhoneNumber()),
+//                new com.twilio.type.PhoneNumber(twilioConfig.TWILIO_PHONE_NUMBER),
+//                "You have a new order request on, please open the app to check"
+//        ).setMediaUrl(
+//                URI.create("https://freeiconshop.com/wp-content/uploads/edd/image-solid.png")
+//        ).create();
+//        Message.Status status = message.getStatus();
+//        log.info(status.name());
+//    }
+//
+//    public byte[] getImage() throws IOException {
+//        Resource resource = new ClassPathResource("pic.png");
+//        return IOUtils.toByteArray(resource.getInputStream());
+//    }
 }

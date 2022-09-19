@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/sms")
 public class SMSController {
 
     final SMSService smsService;
@@ -19,20 +18,29 @@ public class SMSController {
         this.smsService = smsService;
     }
 
-    @PostMapping("/send")
-    public void sms(@RequestBody SMSRequest smsRequest){
-        smsService.sendSms(smsRequest);
+    @PostMapping("/acceptResponse")
+    public void smsAcceptResponse(@RequestBody SMSRequest smsRequest){
+        smsService.sendResponseSms(smsRequest);
     }
 
-    @PostMapping("/media")
-    public void mms(@RequestBody SMSRequest smsRequest,@RequestHeader String host) throws IOException {
-        smsService.sendMMS(smsRequest,host);
+    @PostMapping("/request")
+    public void sendRequest(@RequestBody SMSRequest smsRequest){
+        smsService.sendRequestSms(smsRequest);
     }
 
-    @GetMapping(value = "/image",
-        produces = MediaType.IMAGE_PNG_VALUE
-    )
-    public @ResponseBody byte[] getImage() throws IOException {
-        return smsService.getImage();
+
+
+    @PostMapping("/endResponse")
+    public void smsDecline(@RequestBody SMSRequest smsRequest){
+        smsService.sendDeclineSms(smsRequest);
     }
+
+
+    @PostMapping("/rideEnd")
+    public void smsEnded(@RequestBody SMSRequest smsRequest){
+        smsService.sendRideEnded(smsRequest);
+    }
+
+
+
 }

@@ -4,9 +4,12 @@ package me.felixcodes.twiliowithspringboot.dto;
 public class SMSRequest {
 
     private String phoneNumber;
+    private String name;
+//    private
 
-    public SMSRequest(String phoneNumber) {
+    public SMSRequest(String phoneNumber, String name) {
         this.phoneNumber = phoneNumber;
+        this.name = name;
     }
 
     public SMSRequest(){}
@@ -17,5 +20,13 @@ public class SMSRequest {
 
     public String getPhoneNumber(){
         return this.phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

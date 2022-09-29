@@ -44,7 +44,7 @@ public class SMSService {
                 String.format("Dear %s,Your ride has ended,Thank you for using our app.",smsRequest.getName())
         ).create();
         Message.Status status = message.getStatus();
-        log.info(status.name());
+        log.info(status.name()); 
     }
 
     public void sendDeclineSms(SMSRequest smsRequest){
